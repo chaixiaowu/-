@@ -91,7 +91,7 @@
       <td>{{ $value.slug }}</td>
       <td class="text-center">
         <a href="javascript:void(0)" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
-        <a href="javascript:void(0)" class="btn btn-danger btn-xs">删除</a>
+        <a href="javascript:void(0)" data-id={{$value.id}} class="btn btn-danger btn-delete btn-xs">删除</a>
       </td>
     </tr>
 
@@ -137,6 +137,22 @@
       })
 
 
+      $("tbody").on("click", ".btn-delete", function() {
+        var id = $(this).attr("data-id");
+        $.ajax({
+          url: BigNew.category_delete,
+          type: "post",
+          data: {
+            id: id
+          },
+          success: function(backdata) {
+            console.log(backdata)
+            if (backdata.code == 204) {
+              getCategoryData();
+            }
+          }
+        })
+      })
 
 
 
