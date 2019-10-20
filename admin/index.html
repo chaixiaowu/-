@@ -84,6 +84,12 @@
         // }
 
       })
+      $(".logout").click(function() {
+        if (window.confirm("你真的要离开我了吗")) {
+          window.localStorage.removeItem("aaa");
+          window.location.href = "./login.html"
+        }
+      })
     })
   </script>
 
